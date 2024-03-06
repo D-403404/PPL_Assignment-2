@@ -11,10 +11,10 @@ options {
 }
 
 program: declarationLst EOF;
-declarationLst: newlineLst_0 stmt_declaration declarationLst | newlineLst_0 stmt_declaration;
+declarationLst: SB_NEWLINE* stmt_declaration declarationLst | SB_NEWLINE* stmt_declaration;
 
-newlineLst_0: SB_NEWLINE newlineLst_0 | ;
-newlineLst_1: SB_NEWLINE newlineLst_1 | SB_NEWLINE;
+// newlineLst_0: SB_NEWLINE newlineLst_0 | ;
+// newlineLst_1: SB_NEWLINE newlineLst_1 | SB_NEWLINE;
 
 COMMENT: '##' ~('\r' | '\n')* -> skip;
 WS: [ \t\b\f]+ -> skip; // skip spaces, tabs, backspaces, form feeds
@@ -95,11 +95,13 @@ fragment EscSequence:
 //=====EXPRESSIONS=====
 // ===Array===
 arrayElement: IDENTIFIER expr_element | stmt_func_call expr_element;
+// arrayElement: operand expr_element;
 expr_element: SB_LEFTSQUARE op_index SB_RIGHTSQUARE;
 op_index: expr SB_COMMA op_index | expr;
 
 //Precedence: high to low
 op_unary_index: arrayElement;
+// op_unary_index: expr_element;
 op_unary_sign: OP_MINUS;
 op_unary_logical: OP_NOT;
 op_binary_multiplying: OP_MULT | OP_DIV | OP_MOD;
@@ -124,15 +126,16 @@ expr_multiplying: expr_multiplying op_binary_multiplying expr_not | expr_not;
 expr_not: op_unary_logical expr_not | expr_sign;
 expr_sign: op_unary_sign expr_sign | expr_index;
 expr_index: op_unary_index | operand;
+// expr_index: operand op_unary_index | operand;
 operand: IDENTIFIER | NUMBER | BOOL | STRING | arrayValue | stmt_func_call | SB_LEFTBRACKET expr SB_RIGHTBRACKET;
 
 //=====VARIABLES=====
 kw_type_explicit: KW_NUMBER | KW_BOOL | KW_STRING;
 kw_type: kw_type_explicit | KW_VAR | KW_DYNAMIC;
 stmt_declaration: 
-		stmt_var_declaration newlineLst_1 
-		| stmt_array_declaration newlineLst_1 
-		| stmt_func_declaration newlineLst_1
+		stmt_var_declaration SB_NEWLINE+ 
+		| stmt_array_declaration SB_NEWLINE+ 
+		| stmt_func_declaration SB_NEWLINE+
 		;
 
 stmt_var_declaration: stmt_var_declaration_explicit | stmt_var_declaration_dynamic | stmt_var_declaration_var;
@@ -142,6 +145,7 @@ stmt_var_declaration_var: KW_VAR IDENTIFIER value_init;
 value_init: OP_ASSIGN expr;
 
 stmt_array_declaration: kw_type_explicit arrayId array_init | kw_type_explicit arrayId;
+// stmt_array_declaration: kw_type_explicit IDENTIFIER SB_LEFTSQUARE arrayDim SB_RIGHTSQUARE array_init | kw_type_explicit IDENTIFIER SB_LEFTSQUARE arrayDim SB_RIGHTSQUARE;
 arrayId: IDENTIFIER SB_LEFTSQUARE arrayDim SB_RIGHTSQUARE;
 arrayDim: NUMBER SB_COMMA arrayDim | NUMBER;
 array_init: OP_ASSIGN arrayValue;
@@ -149,26 +153,27 @@ arrayValue: SB_LEFTSQUARE exprLst SB_RIGHTSQUARE;
 exprLst: expr SB_COMMA exprLst | expr;
 
 stmt_func_declaration:
-	KW_FUNC IDENTIFIER SB_LEFTBRACKET paramLst SB_RIGHTBRACKET newlineLst_0 func_body;	
+	KW_FUNC IDENTIFIER SB_LEFTBRACKET paramLst SB_RIGHTBRACKET SB_NEWLINE* func_body;	
 paramLst: param paramLstTail | ;
 paramLstTail: SB_COMMA param paramLstTail | ;
 param: kw_type_explicit IDENTIFIER | kw_type_explicit arrayId;
+// param: kw_type_explicit IDENTIFIER | kw_type_explicit IDENTIFIER SB_LEFTSQUARE arrayDim SB_RIGHTSQUARE;
 func_body: stmt_return | stmt_block | ;
 
 //=====STATEMENTS=====
-statement_type:
-		stmt_var_declaration newlineLst_1 
-		| stmt_array_declaration newlineLst_1
-		| stmt_assignment newlineLst_1
+statement:
+		stmt_var_declaration SB_NEWLINE+ 
+		| stmt_array_declaration SB_NEWLINE+
+		| stmt_assignment SB_NEWLINE+
 		| stmt_if							// No newline to prevent double newline from the stmt and its body
 		| stmt_for							// No newline to prevent double newline from the stmt and its body
-		| stmt_break newlineLst_1
-		| stmt_continue newlineLst_1
-		| stmt_return newlineLst_1
-		| stmt_func_call newlineLst_1
-		| stmt_block newlineLst_1
+		| stmt_break SB_NEWLINE+
+		| stmt_continue SB_NEWLINE+
+		| stmt_return SB_NEWLINE+
+		| stmt_func_call SB_NEWLINE+
+		| stmt_block SB_NEWLINE+
 		;
-statement: statement_type;
+// statement: statement_type;
 
 //===Assignment===
 stmt_assignment: assignment_lhs value_init;
@@ -176,17 +181,17 @@ assignment_lhs: IDENTIFIER | arrayElement;
 
 //===If statement===
 if_statement:
-	KW_IF SB_LEFTBRACKET expr SB_RIGHTBRACKET newlineLst_0 statement;
+	KW_IF SB_LEFTBRACKET expr SB_RIGHTBRACKET SB_NEWLINE* statement;
 elif_statement:
-	KW_ELIF SB_LEFTBRACKET expr SB_RIGHTBRACKET newlineLst_0 statement;
-else_statement: KW_ELSE newlineLst_0 statement | ;
+	KW_ELIF SB_LEFTBRACKET expr SB_RIGHTBRACKET SB_NEWLINE* statement;
+else_statement: KW_ELSE SB_NEWLINE* statement | ;
 stmt_if:
-	if_statement newlineLst_0 elifLst else_statement;
-elifLst: elif_statement newlineLst_0 elifLst | ;
+	if_statement SB_NEWLINE* elifLst else_statement;
+elifLst: elif_statement SB_NEWLINE* elifLst | ;
 
 //===For statement===
 stmt_for:
-	KW_FOR IDENTIFIER KW_UNTIL expr KW_BY expr newlineLst_0
+	KW_FOR IDENTIFIER KW_UNTIL expr KW_BY expr SB_NEWLINE*
 		statement;
 
 stmt_break: KW_BREAK;
@@ -200,7 +205,7 @@ argLst: expr argLstTail | ;
 argLstTail: SB_COMMA expr argLstTail | ;
 
 //===Block statement===
-stmt_block: KW_BEGIN newlineLst_1 statementLst KW_END;
+stmt_block: KW_BEGIN SB_NEWLINE+ statementLst KW_END;
 statementLst: statement statementLst | ;
 
 ERROR_CHAR: . {raise ErrorToken(self.text)};

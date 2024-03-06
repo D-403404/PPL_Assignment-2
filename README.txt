@@ -4,3 +4,7 @@ Type: python run.py gen
 Then type: python run.py test LexerSuite
 Then type: python run.py test ParserSuite
 Then type: python run.py test ASTGenSuite
+
+Note: Edited ZCode.g4 - Linked rules (2 versions)
+- arrayElement, op_unary_index, expr_index
+- arrayId, stmt_array_declaration, param
