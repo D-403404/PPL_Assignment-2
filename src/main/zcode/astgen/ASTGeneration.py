@@ -101,13 +101,13 @@ class ASTGeneration(ZCodeVisitor):
         if ctx.op_binary_string():
             return BinaryOp(self.visit(ctx.op_binary_string()), self.visit(ctx.expr_relational(0)), self.visit(ctx.expr_relational(1)))
         else:
-            return self.visit(ctx.expr_relational())
+            return self.visit(ctx.expr_relational(0))
     
     def visitExpr_relational(self, ctx: ZCodeParser.Expr_relationalContext):
         if ctx.op_binary_relational():
             return BinaryOp(self.visit(ctx.op_binary_relational()), self.visit(ctx.expr_logical(0)), self.visit(ctx.expr_logical(1)))
         else:
-            return self.visit(ctx.expr_logical())
+            return self.visit(ctx.expr_logical(0))
     
     def visitExpr_logical(self, ctx: ZCodeParser.Expr_logicalContext):
         if ctx.op_binary_logical():
@@ -155,15 +155,18 @@ class ASTGeneration(ZCodeVisitor):
         elif ctx.NUMBER():
             return NumberLiteral(float(ctx.NUMBER().getText()))
         elif ctx.BOOL():
-            return BooleanLiteral(eval(ctx.BOOL().getText()))
+            return BooleanLiteral(ctx.BOOL().getText())
         elif ctx.STRING():
-            return StringLiteral(float(ctx.STRING().getText()))
+            return StringLiteral(ctx.STRING().getText())
         elif ctx.arrayValue():
             return self.visit(ctx.arrayValue())
-        elif ctx.stmt_func_call():
-            return self.visit(ctx.stmt_func_call())
+        elif ctx.expr_func_call():
+            return self.visit(ctx.expr_func_call())
         else:
             return self.visit(ctx.expr())
+    
+    def visitExpr_func_call(self, ctx: ZCodeParser.Expr_func_callContext):
+        return CallExpr(Id(ctx.IDENTIFIER().getText()), self.visit(ctx.argLst()))
     
 
 
@@ -259,14 +262,14 @@ class ASTGeneration(ZCodeVisitor):
         return FuncDecl(Id(ctx.IDENTIFIER().getText()), self.visit(ctx.paramLst()), self.visit(ctx.func_body()))
     
     def visitParamLst(self, ctx: ZCodeParser.ParamLstContext):
-        if ctx.paramLst():
-            return [self.visit(ctx.param())] + self.visit(ctx.paramLst())
+        if ctx.paramLstTail():
+            return [self.visit(ctx.param())] + self.visit(ctx.paramLstTail())
         else:
             return []
     
     def visitParamLstTail(self, ctx: ZCodeParser.ParamLstTailContext):
         if ctx.paramLstTail():
-            return [self.visit(ctx.param())] + self.visit(ctx.paramLst())
+            return [self.visit(ctx.param())] + self.visit(ctx.paramLstTail())
         else:
             return []
     
@@ -336,7 +339,10 @@ class ASTGeneration(ZCodeVisitor):
         return self.visit(ctx.expr()), self.visit(ctx.statement())
     
     def visitElse_statement(self, ctx: ZCodeParser.Else_statementContext):
-        return self.visit(ctx.statement())
+        if ctx.statement():
+            return self.visit(ctx.statement())
+        else:
+            return None
     
     def visitStmt_if(self, ctx: ZCodeParser.Stmt_ifContext):
         # return If(self.visit(ctx.if_statement())[0], self.visit(ctx.if_statement())[1], self.visit(ctx.elifLst()), self.visit(ctx.else_statement()))

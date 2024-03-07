@@ -6,5 +6,8 @@ Then type: python run.py test ParserSuite
 Then type: python run.py test ASTGenSuite
 
 Note: Edited ZCode.g4 - Linked rules (2 versions)
+- newlineLst_0, newlineLst_1                => removed
 - arrayElement, op_unary_index, expr_index
 - arrayId, stmt_array_declaration, param
+- BOOL  => moved above IDENTIFIER
+- expr_func_call (new), operand

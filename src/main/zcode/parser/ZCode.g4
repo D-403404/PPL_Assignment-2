@@ -70,13 +70,13 @@ OP_AND: 'and';
 OP_OR: 'or';
 
 //=====LITERALS=====
+BOOL: KW_TRUE | KW_FALSE;
 IDENTIFIER: [A-Za-z_] [A-Za-z_0-9]*;
 NUMBER: IntPart DecPart? ExpPart?;
 fragment Digit: [0-9];
 fragment IntPart: Digit+;
 fragment DecPart: '.' Digit*;
 fragment ExpPart: [Ee] [+-]? Digit+;
-BOOL: KW_TRUE | KW_FALSE;
 STRING:
 	'"' StringContent '"' {self.text = self.text[1:-1]};
 fragment StringContent: (
@@ -127,7 +127,8 @@ expr_not: op_unary_logical expr_not | expr_sign;
 expr_sign: op_unary_sign expr_sign | expr_index;
 expr_index: op_unary_index | operand;
 // expr_index: operand op_unary_index | operand;
-operand: IDENTIFIER | NUMBER | BOOL | STRING | arrayValue | stmt_func_call | SB_LEFTBRACKET expr SB_RIGHTBRACKET;
+operand: IDENTIFIER | NUMBER | BOOL | STRING | arrayValue | expr_func_call | SB_LEFTBRACKET expr SB_RIGHTBRACKET;
+expr_func_call: IDENTIFIER SB_LEFTBRACKET argLst SB_RIGHTBRACKET;
 
 //=====VARIABLES=====
 kw_type_explicit: KW_NUMBER | KW_BOOL | KW_STRING;

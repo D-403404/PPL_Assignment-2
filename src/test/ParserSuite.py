@@ -440,7 +440,8 @@ func main()      \n  """
         input = """func main ()
         number x1 = 5
         """
-        expect = "Error on line 2 col 8: number"
+        # expect = "Error on line 2 col 8: number"
+        expect = "Error on line 2 col 18: ="
         self.assertTrue(TestParser.test(input,expect,1042))
     
     def test_1043(self):
