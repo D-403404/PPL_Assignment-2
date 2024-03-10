@@ -1,0 +1,27 @@
+ 
+                    func getUserNumbers()
+                    begin
+                        number numbersInput <- input("Enter a list of numbers separated by spaces: ")
+                        number numbersList[0] <- [0]
+                        for num until num = length(numbersInput) by 1
+                            numbersListAppend(toNumber(num))
+                        return numbersList
+                    end
+
+                    func filterNumbersDivisibleByFive(number numbersList)
+                    begin
+                        number divisibleByFive[0] <- [0]
+                        number i <- 0
+                        for i until length(numbersList) by 1
+                            if (num % 5 = 0)
+                                divisibleByFiveAppend(num)
+                        return divisibleByFive
+                    end
+
+                    func main()
+                    begin
+                        number userNumbers <- getUserNumbers()
+                        number result <- filterNumbersDivisibleByFive(userNumbers)
+                        print("Numbers divisible by 5: {}", format(result))
+                    end
+        

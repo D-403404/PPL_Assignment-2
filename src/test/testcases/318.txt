@@ -1,0 +1,2 @@
+ bool b[3] <- [true, false, true or false]
+        

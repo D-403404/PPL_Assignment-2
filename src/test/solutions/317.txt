@@ -1,0 +1,1 @@
+Program([VarDecl(Id(s), ArrayType([2.0], StringType), None, ArrayLit(StringLit(Hi), StringLit(Welcome)))])

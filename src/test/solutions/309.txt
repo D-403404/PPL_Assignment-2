@@ -1,0 +1,1 @@
+Program([VarDecl(Id(a), NumberType, None, NumLit(5.0)), VarDecl(Id(b), BoolType, None, BinaryOp(>=, Id(a), BinaryOp(+, NumLit(2.0), CallExpr(Id(length), [ArrayLit(NumLit(1.0), NumLit(2.0), NumLit(3.0))])))), VarDecl(Id(not_b), BoolType, None, UnaryOp(not, Id(b))), VarDecl(Id(c), BoolType, None, BinaryOp(=, CallExpr(Id(add), [Id(a), NumLit(2.0)]), NumLit(3.0)))])

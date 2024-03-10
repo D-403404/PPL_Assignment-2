@@ -1,0 +1,17 @@
+ 
+                    func keepOnlyIntegers(string inputString)
+                    begin
+                        string result <- ""
+                        for char until char = length(inputString) by 1
+                            if (charIsdigit())
+                                result <- result + char
+                        return result
+                    end
+
+                    func main()
+                    begin
+                        string userString <- input("Enter a string: ")
+                        string result <- keepOnlyIntegers(userString)
+                        print("Result after keeping only integers:", result)
+                    end
+        

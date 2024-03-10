@@ -1,0 +1,25 @@
+ 
+                    func calculateSum(number numbers[4])
+                        return sum(numbers)
+
+                    func displaySortedNumbers(number numbers[4])
+                    begin
+                        number sortedNumbers[4] <- sorted(numbers)
+                        print(sortedNumbers)
+                    end
+
+                    func main()
+                    begin
+                        number num1 <- toNumber(input())
+                        number num2 <- toNumber(input())
+                        number num3 <- toNumber(input())
+                        number num4 <- toNumber(input())
+
+                        number numberList[4] <- [num1, num2, num3, num4]
+
+                        number sumResult <- calculateSum(numberList)
+                        displaySortedNumbers(numberList)
+
+                        print(sumResult)
+                    end
+        

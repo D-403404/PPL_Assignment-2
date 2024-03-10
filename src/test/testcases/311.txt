@@ -1,0 +1,5 @@
+ 
+                    string s <- "Hi there, "
+                    string t <- lower("mY nAme Is keVin")
+                    string u <- (s ... t) ... lower("VERY NICE TO MEET YOU", 0, 5)
+                

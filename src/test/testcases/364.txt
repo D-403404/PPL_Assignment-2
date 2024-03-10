@@ -1,0 +1,18 @@
+ 
+                    func findLastPosition(string substring, string fullString)
+                    begin
+                        number lastPosition <- -1
+                        number index <- fullStringFind(substring)
+                        for i until i = -1 by fullStringFind(substring, index + 1)
+                            lastPosition <- index
+                        return lastPosition
+                    end
+
+                    func main()
+                    begin
+                        string userSubstring <- input("Enter the substring: ")
+                        string userFullString <- input("Enter the full string: ")
+                        number result <- findLastPosition(userSubstring, userFullString)
+                        print("Last position of the substring:", result)
+                    end
+        

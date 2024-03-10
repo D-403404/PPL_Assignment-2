@@ -1,0 +1,5 @@
+ 
+                    string s <- "a" ... str(123)
+                    string t <- (s ... str(432)) ... ((str(123) ... s) ... "")
+                    string u <- (s ... t)
+                

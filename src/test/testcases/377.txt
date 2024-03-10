@@ -1,0 +1,7 @@
+ 
+                    func main()
+                    begin
+                        dynamic a <- 7 and (5-4/1 or (12e-5)) == true and ((("hi there"...23) >= (35 != 43)) = "good")
+                        var b <- input("what to type?")
+                    end
+        

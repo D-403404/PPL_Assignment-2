@@ -1,0 +1,21 @@
+ 
+                    func countSubstringOccurrences(string fullString, string substring)
+                    begin
+                        number count <- 0
+                        number index <- fullStringFind(substring)
+                        for i until i = -1 by fullStringFind(substring, index + 1)
+                        begin
+                            count <- count + 1
+                            index <- fullStringFind(substring, index + 1)
+                        end
+                        return count
+                    end
+
+                    func main()
+                    begin
+                        string userString <- input("Enter a string: ")
+                        string userSubstring <- input("Enter the substring to count: ")
+                        number result <- countSubstringOccurrences(userString, userSubstring)
+                        print("Number of occurrences of '"{}'" in the string: {}", format(userSubstring, result))
+                    end
+        

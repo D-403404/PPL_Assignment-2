@@ -1,0 +1,18 @@
+ 
+                    func removeCharacters(string inputString, number n)
+                    begin
+                        string newString <- ""
+                        number i <- n
+                        for i until i = len(inputString) by 1
+                            newString <- newString + inputString[i]
+                        return newString
+                    end
+
+                    func main()
+                    begin
+                        string userString <- input("Enter a string: ")
+                        number n <- toNumber(input("Enter the number of characters to remove: "))
+                        result <- removeCharacters(userString, n)
+                        print("Resulting string: {}", format(result))
+                    end
+        

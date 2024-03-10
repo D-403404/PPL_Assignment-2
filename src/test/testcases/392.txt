@@ -1,0 +1,17 @@
+ 
+                    func calculateSquareRoot(number num)
+                        return sqrt(num)
+
+                    func calculateExponential(number num)
+                        return exp(num)
+
+                    func main()
+                    begin
+                        number userInput <- toNumber(input())
+
+                        number squareRootResult <- calculateSquareRoot(userInput)
+                        number exponentialResult <- calculateExponential(userInput)
+
+                        print(squareRootResult, exponentialResult)
+                    end
+        

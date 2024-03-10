@@ -1,0 +1,16 @@
+ 
+                    func reverseString(string inputString)
+                    begin
+                        string reversedString <- ""
+                        for char until char = length(inputString) by 1
+                            reversedString <- char + reversedString
+                        return reversedString
+                    end
+
+                    func main()
+                    begin
+                        string userString <- input("Enter a string: ")
+                        string result <- reverseString(userString)
+                        print("Reversed string:", result)
+                    end
+        

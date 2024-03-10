@@ -1,0 +1,43 @@
+ 
+                    func addProduct(string lstProducts, string strProductName, number intInitialStock)
+                    begin
+                        string dictProduct[3] <- ["name", strProductName, "stock", intInitialStock]
+                        lstProductsAppend(dictProduct)
+                        print("{} added to inventory with initial stock: {}", format(strProductName, intInitialStock))
+                    end
+
+                    func displayInventory(string lstProducts)
+                    begin
+                        print("Inventory:")
+                        for product until product = length(lstProducts) by 1
+                            print("Product: {}, Stock: {}", format(product["name"], product["stock"]))
+                    end
+
+                    func updateStock(string lstProducts, string strProductName, number intQuantity)
+                    begin
+                        for product until product = length(lstProducts) by 1
+                            if (product["name"] = strProductName)
+                            begin
+                                product[1] <- product["stock"] + intQuantity
+                                print("Stock updated for {}: {}", format(strProductName, product["stock"]))
+                                return true
+                            end
+                        print("{} not found in inventory.", format(strProductName))
+                    end
+
+                    func main()
+                    begin
+                        string lstProducts[0] <- [0]
+
+                        addProduct(lstProducts, "Item1", 10)
+                        addProduct(lstProducts, "Item2", 20)
+                        addProduct(lstProducts, "Item3", 15)
+
+                        displayInventory(lstProducts)
+
+                        updateStock(lstProducts, "Item2", 5)
+                        updateStock(lstProducts, "Item4", 8)
+
+                        displayInventory(lstProducts)
+                    end
+        

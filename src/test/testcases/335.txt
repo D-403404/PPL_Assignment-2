@@ -1,0 +1,7 @@
+ ## comment
+                    func a(string a[5, 2], string b[2, 5], bool a[1, 2], number d[5])
+                    begin
+                        return
+                    end
+                    ## another comment
+        

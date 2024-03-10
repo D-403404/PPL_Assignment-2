@@ -1,0 +1,16 @@
+ 
+                    func calculateDifferenceSquaredSumAndSumOfSquares(number n)
+                    begin
+                        number sumNatural <- floor(n * (n + 1) / 2)
+                        number squaredSum <- pow(sumNatural, 2)
+                        number sumSquares <- floor(n * (n + 1) * (2 * n + 1) / 6)
+                        return squaredSum - sumSquares
+                    end
+
+                    func main()
+                    begin
+                        number userInput <- toNumber(input())
+                        number result <- calculateDifferenceSquaredSumAndSumOfSquares(userInput)
+                        print(result)
+                    end
+        

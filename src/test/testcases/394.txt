@@ -1,0 +1,17 @@
+ 
+                    func roundUpwards(number num)
+                        return -floor((-num / 1))
+
+                    func roundDownwards(number num)
+                        return floor(num / 1)
+
+                    func main()
+                    begin
+                        number userInput <- toNumber(input())
+
+                        number roundedUpwards <- roundUpwards(userInput)
+                        number roundedDownwards <- roundDownwards(userInput)
+
+                        print(roundedUpwards, roundedDownwards)
+                    end
+        

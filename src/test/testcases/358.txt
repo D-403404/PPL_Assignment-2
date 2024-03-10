@@ -1,0 +1,39 @@
+ 
+                    func askQuestion(string question[4], string choices[3, 3])
+                    begin
+                        print(question)
+                        for i until i = 3 by 1
+                            print(i, choice)
+                        userAnswer <- toNumber(input("Enter your choice (1-{}): ", format(len(choices))))
+                        return userAnswer - 1
+                    end
+
+                    func runQuiz(string questions[4], string choices[3, 3], number answers[4])
+                    begin
+                        intScore <- 0
+                        for i until i = length(questions) by 1
+                        begin
+                            userAnswer <- askQuestion(questions[i], choices[i])
+                            if (userAnswer = answers[i])
+                            begin
+                                intScore <- intScore + 1
+                                print("Correct!\n")
+                            end
+                            else
+                                print("Incorrect. The correct answer is: {}\n", format(choices[i, answers[i]]))
+                        end
+                        return intScore
+                    end
+
+                    func main()
+                    begin
+                        strQuestions <- ["What is the capital of France?", "Which planet is known as the Red Planet?", "What is the largest mammal?", "Who wrote '"Romeo and Juliet'"?"]
+
+                        strChoices <- [["Paris", "Berlin", "Madrid"], ["Earth", "Mars", "Venus"], ["Elephant", "Blue Whale", "Giraffe"], ["Shakespeare", "Dickens", "Austen"]]
+
+                        intAnswers <- [0, 1, 1, 0]
+
+                        intScore <- runQuiz(strQuestions, strChoices, intAnswers)
+                        print("Your score is: {}/{}", format(intScore, len(strQuestions)))
+                    end
+        

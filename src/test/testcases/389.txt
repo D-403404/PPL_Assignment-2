@@ -1,0 +1,17 @@
+ 
+                    func convertPolarToRectangular(number length, number angle)
+                    begin
+                        number rectangularNum <- rect(length, angle)
+                        return rectangularNum
+                    end
+
+                    func main()
+                    begin
+                        number length <- toNumber(input())
+                        number angle <- toNumber(input())
+
+                        number rectangularResult <- convertPolarToRectangular(length, angle)
+
+                        print(rectangularResult)
+                    end
+        

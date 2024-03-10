@@ -1,0 +1,28 @@
+ 
+
+
+                    func foo(number a, string b, bool c)
+
+
+                        return (toString(a) ... toString(c)) ... b
+
+
+                        
+                    func main()
+
+
+                    begin
+
+
+                        number a <- 10
+
+
+
+                        string b <- "a string"
+                        bool c <- true
+
+
+                    end
+
+
+        

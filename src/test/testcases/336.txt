@@ -1,0 +1,16 @@
+ func main()
+                    begin
+                        number a <- 5
+                        number b <- 10
+
+                        if (a < b)
+                            return true
+                        elif (a >= b)
+                        begin
+                            b <- a + b
+                            return false
+                        end
+                        else
+                            return false
+                    end
+        

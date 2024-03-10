@@ -1,0 +1,13 @@
+ 
+                    func shuffleElements(number elements)
+                    begin
+                        shuffle(elements)
+                    end
+
+                    func main()
+                    begin
+                        number inputElements <- split(",", input())
+                        shuffleElements(inputElements)
+                        print(inputElements)
+                    end
+        

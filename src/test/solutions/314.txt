@@ -1,0 +1,1 @@
+Program([VarDecl(Id(s), StringType, None, CallExpr(Id(str), [CallExpr(Id(countOccurence), [Id(s), BinaryOp(..., BinaryOp(..., Id(s), Id(s)), BinaryOp(..., Id(s), Id(s)))])])), VarDecl(Id(t), StringType, None, BinaryOp(..., Id(s), CallExpr(Id(str), [Id(s)])))])

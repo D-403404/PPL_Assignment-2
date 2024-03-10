@@ -1,0 +1,7 @@
+ 
+                    ## test comment
+                    bool b <- 5 != 5 ##false
+                    ##test another comment
+                    bool another_bool <- 5 <= 1
+                    bool c <- 1 + ((2 * 5) - 3) + (1) >= -(2) + length("hi there")
+                

@@ -1,0 +1,65 @@
+ 
+                    func addTask(string tasks[3], string task)
+                    begin
+                        tasksAppend(task)
+                        print(("Task " ... task) ... " added.")
+                    end
+
+                    func viewTasks(string tasks[3])
+                    begin
+                        if (not tasks)
+                            print("No tasks available.")
+                        else
+                        begin
+                            print("Tasks:")
+                            for i until i = tasksLength() by 1
+                                print(i, tasks[i])
+                        end
+                    end
+
+                    func removeTask(string tasks[3], number taskIndex)
+                    begin
+                        if ((1 <= taskIndex) and (taskIndex <= len(tasks)))
+                        begin
+                            removedTask <- tasksPop(taskIndex - 1)
+                            print(("Task " ... removedTask) ... " removed.")
+                        end
+                        else
+                            print("Invalid task index.")
+                    end
+
+                    func main()
+                    begin
+                        string tasks[0] <- [0]
+                        number i <- 0
+                        for i until true by -1
+                            print("\nOptions:")
+                            print("1. Add Task")
+                            print("2. View Tasks")
+                            print("3. Remove Task")
+                            print("4. Exit")
+
+                            choice <- toNumber(input("Enter your choice (1-4): "))
+
+                            if (choice = 1)
+                            begin
+                                task <- input("Enter the task: ")
+                                addTask(tasks, task)
+                            end
+                            elif (choice = 2)
+                                viewTasks(tasks)
+                            elif (choice = 3)
+                            begin
+                                viewTasks(tasks)
+                                taskIndex <- toNumber(input("Enter the task index to remove: "))
+                                removeTask(tasks, taskIndex)
+                            end
+                            elif (choice = 4)
+                            begin
+                                print("Exiting program. Thank you!")
+                                break
+                            end
+                            else
+                                print("Invalid choice. Please enter a number between 1 and 4.")
+                    end
+        

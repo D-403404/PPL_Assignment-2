@@ -1,0 +1,1 @@
+Program([FuncDecl(Id(shuffleElements), [VarDecl(Id(elements), NumberType, None, None)], Block([CallStmt(Id(shuffle), [Id(elements)])])), FuncDecl(Id(main), [], Block([VarDecl(Id(inputElements), NumberType, None, CallExpr(Id(split), [StringLit(,), CallExpr(Id(input), [])])), CallStmt(Id(shuffleElements), [Id(inputElements)]), CallStmt(Id(print), [Id(inputElements)])]))])

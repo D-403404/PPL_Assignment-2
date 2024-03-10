@@ -11,3 +11,20 @@ Note: Edited ZCode.g4 - Linked rules (2 versions)
 - arrayId, stmt_array_declaration, param
 - BOOL  => moved above IDENTIFIER
 - expr_func_call (new), operand
+- from main.zcode.utils.AST import * (in ASTGeneration.py and ASTGenSuite.py)
+- arrayElement: stmt_func_call -> expr_func_call
+- array_init
+
+Forum:
+- Về ArrayCell
+- Ambiguous program
+- Khúc mắc trong class Arraytype (test_7)
+
+Testcases:
+- test_7
+- test_9 (negative number)
+- test_18 (index operator: ArrayCell or UnaryOp (preferrably ArrayCell))
+
+Note:
+- LHS and Literal are Expr
+    => operand can be: BinaryOp, UnaryOp, CallExpr, ArrayCell, NumberLiteral, StringLiteral, BooleanLiteral, ArrayLiteral

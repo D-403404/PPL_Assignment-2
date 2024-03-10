@@ -1,0 +1,2 @@
+ number a <- res(mul(add(2, 5), 3) + div(5, 5), [1, 2, 3], res())
+        

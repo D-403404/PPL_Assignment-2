@@ -1,0 +1,1 @@
+Program([FuncDecl(Id(add), [VarDecl(Id(a), NumberType, None, None), VarDecl(Id(b), NumberType, None, None)], None), FuncDecl(Id(main), [], Block([CallStmt(Id(print), [CallExpr(Id(add), [NumLit(2.0), NumLit(3.0)])])])), FuncDecl(Id(add), [VarDecl(Id(a), NumberType, None, None), VarDecl(Id(b), NumberType, None, None)], Return(BinaryOp(+, Id(a), Id(b))))])

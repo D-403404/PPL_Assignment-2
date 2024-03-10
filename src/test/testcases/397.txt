@@ -1,0 +1,20 @@
+ 
+                    func generateRandomIntegers(number startRange, number endRange, number count)
+                    begin
+                        number result[0] <- [0]
+                        for i until i = count by 1
+                            resultAppend(randint(startRange, endRange))
+                        return result
+                    end
+
+                    func main()
+                    begin
+                        number startRange <- int(input())
+                        number endRange <- int(input())
+                        number count <- int(input())
+
+                        number randomIntegers[1] <- generateRandomIntegers(startRange, endRange, count)
+
+                        print(randomIntegers)
+                    end
+        

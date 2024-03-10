@@ -1,0 +1,11 @@
+ 
+                    func convertDegreesToRadians(number degrees)
+                        return degrees * (3.1415 / 180)
+
+                    func main()
+                    begin
+                        number degrees <- toNumber(input("Enter degrees: "))
+                        number radians <- convertDegreesToRadians(degrees)
+                        print("Radians:", radians)
+                    end
+        

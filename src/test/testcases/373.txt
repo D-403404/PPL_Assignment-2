@@ -1,0 +1,18 @@
+ 
+                    func calculateSumOfDigits(number base, number power)
+                    begin
+                        number result <- pow(base, power)
+                        number digitSum <- 0
+                        for result until result = 0 by floor(result / 10)
+                            digitSum <- digitSum + result % 10
+                        return digitSum
+                    end
+
+                    func main()
+                    begin
+                        number baseInput <- int(input())
+                        number powerInput <- int(input())
+                        number result <- calculateSumOfDigits(baseInput, powerInput)
+                        print(result)
+                    end
+        

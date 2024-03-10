@@ -1,0 +1,18 @@
+ 
+                    func getComplexNumberLengthAndAngle(number num)
+                    begin
+                        number nums[2] <- polar(num)
+                        return nums
+                    end
+
+                    func main()
+                    begin
+                        number real <- toNumber(input())
+                        number imag <- toNumber(input())
+                        number complexNum <- complex(real, imag)
+
+                        number nums[2] <- getComplexNumberLengthAndAngle(complexNum)
+
+                        print(nums[0], nums[1])
+                    end
+        

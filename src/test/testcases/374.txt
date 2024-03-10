@@ -1,0 +1,22 @@
+ 
+                    func isAbundantNumber(number num)
+                    begin
+                        number properDivisorsSum <- 1
+                        number i <- 2
+                        for i until i = sqrt(num) + 1 by 1
+                            if (num % i = 0)
+                            begin
+                                properDivisorsSum <- properDivisorsSum + i
+                                if (i != floor(num / i))
+                                    properDivisorsSum <- properDivisorsSum + floor(num / i)
+                            end
+                        return properDivisorsSum > num
+                    end
+
+                    func main()
+                    begin
+                        number userInput <- int(input())
+                        number result <- isAbundantNumber(userInput)
+                        print(result)
+                    end
+        

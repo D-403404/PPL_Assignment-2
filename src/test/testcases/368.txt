@@ -1,0 +1,24 @@
+ 
+                    func bubbleSort(number arr)
+                    begin
+                        number n <- len(arr)
+                        for i until i = n by 1
+                            number j <- 0
+                            for j until j = n - i - 1 by 1
+                                if (arr[j] > arr[j + 1])
+                                begin
+                                    arr[j] <- arr[j + 1]
+                                    arr[j + 1] <- arr[j]
+                                end
+                    end
+
+                    func main()
+                    begin
+                        number userArray[0] <- [0]
+                        string elements <- split(input("Enter a list of numbers separated by spaces: "))
+                        for element until element = length(elements) by 1
+                            userArrayAppend(int(element))
+                        bubbleSort(userArray)
+                        print("Sorted Array:", userArray)
+                    end
+        

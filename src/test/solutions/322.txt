@@ -1,0 +1,1 @@
+Program([VarDecl(Id(b), BoolType, None, BinaryOp(or, UnaryOp(not, BinaryOp(and, CallExpr(Id(expr1), []), CallExpr(Id(expr2), []))), CallExpr(Id(expr3), [BinaryOp(and, BooleanLit(True), BooleanLit(False))])))])

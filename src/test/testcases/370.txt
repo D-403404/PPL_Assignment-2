@@ -1,0 +1,41 @@
+ 
+                    func gcd(number a, number b)
+                    begin
+                        for b until b = 1 by a % b
+                            a <- b
+                        return a
+                    end
+
+                    func lcm(number a, number b)
+                        return floor((a * b) / gcd(a, b))
+
+                    func get_factors(number smallest_multiple, number n)
+                    begin
+                        number factors[0] <- [0]
+                        number i <- 1
+                        for i until i = n + 1 by 1
+                            if (smallest_multiple % i = 0)
+                                factorsAppend(i)
+                        return factors
+                    end
+
+                    func find_smallest_multiple(number n)
+                    begin
+                        number smallest_multiple <- 1
+                        number i <- 2
+                        for i until i = n + 1 by 1
+                            smallest_multiple <- lcm(smallest_multiple, i)
+
+                        number factors <- get_factors(smallest_multiple, n)
+
+                        return [smallest_multiple, factors]
+                    end
+
+                    func main()
+                    begin
+                        number n <- int(input("Enter a number (n): "))
+                        number nums[2] <- find_smallest_multiple(n)
+                        print("Smallest Multiple:", result)
+                        print("Factors:", factors)
+                    end
+        

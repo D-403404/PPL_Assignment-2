@@ -1,0 +1,14 @@
+ 
+                    func convertDecimalToBinary(number decimalNum)
+                    begin
+                        number binaryNum <- bin(decimalNum)
+                        return binaryNum
+                    end
+
+                    func main()
+                    begin
+                        number userInput <- int(input())
+                        number result <- convertDecimalToBinary(userInput)
+                        print(result)
+                    end
+        

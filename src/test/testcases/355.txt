@@ -1,0 +1,21 @@
+ 
+                    func main()
+                    begin
+                        if (a < b)
+                        begin
+                            if (a < b) print(c)
+                            elif (a > b) print(d)
+                            elif (a > b) print(d)
+                            elif (a > b)
+                                for i until i = 9 by 1
+                                    if (a < b) print(c)
+                                    elif (a > b) print(d)
+                            elif (a > b) print(d)
+                            else
+                                for i until i = ab by c
+                                    print(true)
+                        end
+                        elif (a > b) print(d)
+                        else print(e)
+                    end
+        

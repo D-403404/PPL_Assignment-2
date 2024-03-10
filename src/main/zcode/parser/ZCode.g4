@@ -94,7 +94,7 @@ fragment EscSequence:
 
 //=====EXPRESSIONS=====
 // ===Array===
-arrayElement: IDENTIFIER expr_element | stmt_func_call expr_element;
+arrayElement: IDENTIFIER expr_element | expr_func_call expr_element;
 // arrayElement: operand expr_element;
 expr_element: SB_LEFTSQUARE op_index SB_RIGHTSQUARE;
 op_index: expr SB_COMMA op_index | expr;
@@ -134,10 +134,10 @@ expr_func_call: IDENTIFIER SB_LEFTBRACKET argLst SB_RIGHTBRACKET;
 kw_type_explicit: KW_NUMBER | KW_BOOL | KW_STRING;
 kw_type: kw_type_explicit | KW_VAR | KW_DYNAMIC;
 stmt_declaration: 
-		stmt_var_declaration SB_NEWLINE+ 
-		| stmt_array_declaration SB_NEWLINE+ 
-		| stmt_func_declaration SB_NEWLINE+
-		;
+	stmt_var_declaration SB_NEWLINE+ 
+	| stmt_array_declaration SB_NEWLINE+ 
+	| stmt_func_declaration SB_NEWLINE+
+	;
 
 stmt_var_declaration: stmt_var_declaration_explicit | stmt_var_declaration_dynamic | stmt_var_declaration_var;
 stmt_var_declaration_explicit: kw_type_explicit IDENTIFIER value_init | kw_type_explicit IDENTIFIER;
@@ -149,12 +149,13 @@ stmt_array_declaration: kw_type_explicit arrayId array_init | kw_type_explicit a
 // stmt_array_declaration: kw_type_explicit IDENTIFIER SB_LEFTSQUARE arrayDim SB_RIGHTSQUARE array_init | kw_type_explicit IDENTIFIER SB_LEFTSQUARE arrayDim SB_RIGHTSQUARE;
 arrayId: IDENTIFIER SB_LEFTSQUARE arrayDim SB_RIGHTSQUARE;
 arrayDim: NUMBER SB_COMMA arrayDim | NUMBER;
-array_init: OP_ASSIGN arrayValue;
+// array_init: OP_ASSIGN arrayValue;
+array_init: value_init;
 arrayValue: SB_LEFTSQUARE exprLst SB_RIGHTSQUARE;
 exprLst: expr SB_COMMA exprLst | expr;
 
 stmt_func_declaration:
-	KW_FUNC IDENTIFIER SB_LEFTBRACKET paramLst SB_RIGHTBRACKET SB_NEWLINE* func_body;	
+	KW_FUNC IDENTIFIER SB_LEFTBRACKET paramLst SB_RIGHTBRACKET SB_NEWLINE* func_body;
 paramLst: param paramLstTail | ;
 paramLstTail: SB_COMMA param paramLstTail | ;
 param: kw_type_explicit IDENTIFIER | kw_type_explicit arrayId;
@@ -163,17 +164,17 @@ func_body: stmt_return | stmt_block | ;
 
 //=====STATEMENTS=====
 statement:
-		stmt_var_declaration SB_NEWLINE+ 
-		| stmt_array_declaration SB_NEWLINE+
-		| stmt_assignment SB_NEWLINE+
-		| stmt_if							// No newline to prevent double newline from the stmt and its body
-		| stmt_for							// No newline to prevent double newline from the stmt and its body
-		| stmt_break SB_NEWLINE+
-		| stmt_continue SB_NEWLINE+
-		| stmt_return SB_NEWLINE+
-		| stmt_func_call SB_NEWLINE+
-		| stmt_block SB_NEWLINE+
-		;
+	stmt_var_declaration SB_NEWLINE+ 
+	| stmt_array_declaration SB_NEWLINE+
+	| stmt_assignment SB_NEWLINE+
+	| stmt_if							// No newline to prevent double newline from the stmt and its body
+	| stmt_for							// No newline to prevent double newline from the stmt and its body
+	| stmt_break SB_NEWLINE+
+	| stmt_continue SB_NEWLINE+
+	| stmt_return SB_NEWLINE+
+	| stmt_func_call SB_NEWLINE+
+	| stmt_block SB_NEWLINE+
+	;
 // statement: statement_type;
 
 //===Assignment===

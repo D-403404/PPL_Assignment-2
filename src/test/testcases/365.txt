@@ -1,0 +1,11 @@
+ 
+                    func splitStringOnHyphens(string inputString)
+                        return inputStringSplit("-")
+
+                    func main()
+                    begin
+                        string userString <- input("Enter a string with hyphens: ")
+                        string result <- splitStringOnHyphens(userString)
+                        print("Split result:", result)
+                    end
+        

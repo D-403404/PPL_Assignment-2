@@ -1,0 +1,4 @@
+ 
+                    string s <- ("Hi there, welcome to '"Magical Land'". Come on!" ... "Ok let's go baby!") ... "What are you waiting for?"
+                    string t <- lower(s ... upper(s)) ... reverse(s)
+                

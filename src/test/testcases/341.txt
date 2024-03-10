@@ -1,0 +1,30 @@
+ 
+                    func calculateVectorMagnitude(number x, number y)
+                        return sqrt(pow(x, 2) + pow(y, 2))
+
+                    func calculateDotProduct(number x1, number y1, number x2, number y2)
+                        return x1*x2 + y1*y2
+
+                    func getUserInput()
+                    begin
+                        number x1 <- toNumber(input("Enter the x-coordinate of vector 1: "))
+                        number y1 <- toNumber(input("Enter the y-coordinate of vector 1: "))
+                        number x2 <- toNumber(input("Enter the x-coordinate of vector 2: "))
+                        number y2 <- toNumber(input("Enter the y-coordinate of vector 2: "))
+                        return [x1, y1, x2, y2]
+                    end
+
+                    func displayResult(number magnitude, number dotProduct)
+                    begin
+                        print("Magnitude of the vectors: {}", format(magnitude))
+                        print("Dot product of the vectors: {}", format(dotProduct))
+                    end
+
+                    func main()
+                    begin
+                        number nums[4] <- getUserInput()
+                        number magnitude <- calculateVectorMagnitude(nums[0], nums[1])
+                        number dotProduct <- calculateDotProduct(nums[0], nums[1], nums[2], nums[3])
+                        displayResult(magnitude, dotProduct)
+                    end
+        

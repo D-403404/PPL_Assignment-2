@@ -1,0 +1,14 @@
+ 
+                    func calculateCircleArea(number floatRadius)
+                    begin
+                        number pi <- 3.14159
+                        return pi * floatRadius * floatRadius
+                    end
+
+                    func main()
+                    begin
+                        number floatRadius <- toNumber(input("Enter the radius of the circle: "))
+                        number floatArea <- calculateCircleArea(floatRadius)
+                        print("The area of the circle is: {}", format(floatArea))
+                    end
+        

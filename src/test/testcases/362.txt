@@ -1,0 +1,12 @@
+ 
+                    func calculatePower(number base, number exponent)
+                        return power(base, exponent)
+
+                    func main()
+                    begin
+                        number userBase <- toNumber(input("Enter the base: "))
+                        number userExponent <- toNumber(input("Enter the exponent: "))
+                        result <- calculatePower(userBase, userExponent)
+                        print("The result is: {}", format(result))
+                    end
+        

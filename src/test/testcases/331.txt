@@ -1,0 +1,11 @@
+ ## a comment on func
+                    func add(number a, number b)            
+        
+                    func main()
+                    begin
+                        print(add(2, 3))
+                    end
+
+                    func add(number a, number b)
+                        return a + b
+        

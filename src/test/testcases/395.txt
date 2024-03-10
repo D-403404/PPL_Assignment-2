@@ -1,0 +1,13 @@
+ 
+                    func displayFractionRepresentation(number num)
+                    begin
+                        number fractionRepresentation <- limit_denominator(Fraction(num))
+                        print(fractionRepresentation)
+                    end
+
+                    func main()
+                    begin
+                        number userInput <- toNumber(input())
+                        displayFractionRepresentation(userInput)
+                    end
+        

@@ -1,0 +1,25 @@
+ 
+                    func main()
+                    begin
+                        for i until i = 9 by 1
+                        begin
+                            for j until 12 by 1
+                            begin
+                                if (a > b + c / d)
+                                    break
+                                elif (a < b + c / d)
+                                    continue
+                                else
+                                    for k until 10 by 2
+                                        print("Hello, nice to meet you")
+                                string a <- "5"
+                                number d <- 12
+                                if (toNumber(a) = d)
+                                    break
+                            end
+                            begin
+
+                            end
+                        end
+                    end
+        

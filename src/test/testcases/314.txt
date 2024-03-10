@@ -1,0 +1,6 @@
+ 
+                    ##test with comments
+                    string s <- str(countOccurence(s, (s ... s) ... (s ... s))) ## there should be 4
+                    string t <- s ... str(s)
+                    ## yep I'm done
+                

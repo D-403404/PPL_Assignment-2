@@ -1,0 +1,11 @@
+ 
+                    func convertFloatToRatio(number floatNum)
+                        return limit_denominator(Fraction(floatNum))
+
+                    func main()
+                    begin
+                        number userInput <- toNumber(input())
+                        number result <- convertFloatToRatio(userInput)
+                        print(result)
+                    end
+        

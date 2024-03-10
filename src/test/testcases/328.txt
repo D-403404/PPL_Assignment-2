@@ -1,0 +1,5 @@
+ var c <- 5 * 2
+                    var d <- false or not true
+                    var e <- "hi"
+                    dynamic f <- boolean(c) + boolean(d) + boolean(e)
+        

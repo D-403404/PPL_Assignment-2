@@ -1,0 +1,17 @@
+ number a <- 10
+                    number b <- 15
+
+                    func gcd(number a, number b)
+
+                    func main()
+                    begin
+                        print(gcd(a, b))
+                    end
+
+                    func gcd(number a, number b)
+                    begin
+                        print("return gcd of a and b")
+                    end
+
+                    bool c <- true
+        

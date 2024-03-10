@@ -1,0 +1,17 @@
+ 
+                    func main()
+                    begin
+                        if (a + b > c - d / 123)
+                        begin
+                            print(true)
+                            if (a > c)
+                                print(foo(2, 3) + foo(a[2, b[3, 6, 1, [3, 4]]], d))
+                            elif (a < c)
+                                print(goo(12, a, 32, true, "oke"))
+                            else
+                                if (c > d) add(add(3), sub(mul(2, 1), 1))
+                        end
+                        else
+                            print(false)
+                    end
+        

@@ -1,0 +1,2 @@
+ dynamic b <- "a dynamic string"
+        

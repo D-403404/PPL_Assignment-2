@@ -1,0 +1,4 @@
+ dynamic a <- 7
+                    var b <- 9
+                    dynamic c <- a + b
+        

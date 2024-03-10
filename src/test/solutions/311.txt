@@ -1,0 +1,1 @@
+Program([VarDecl(Id(s), StringType, None, StringLit(Hi there, )), VarDecl(Id(t), StringType, None, CallExpr(Id(lower), [StringLit(mY nAme Is keVin)])), VarDecl(Id(u), StringType, None, BinaryOp(..., BinaryOp(..., Id(s), Id(t)), CallExpr(Id(lower), [StringLit(VERY NICE TO MEET YOU), NumLit(0.0), NumLit(5.0)])))])

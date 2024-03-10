@@ -1,0 +1,18 @@
+ 
+                    func checkNumber(number intValue)
+                    begin
+                        if (intValue > 0)
+                            return "Positive"
+                        elif (intValue < 0)
+                            return "Negative"
+                        else
+                            return "Zero"
+                    end
+
+                    func main()
+                    begin
+                        intValue <- toNumber(input("Enter a number: "))
+                        result <- checkNumber(intValue)
+                        print("The number is:", result)
+                    end
+        

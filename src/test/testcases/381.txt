@@ -1,0 +1,19 @@
+ 
+                    func calculateCatalanNumber(number n)
+                    begin
+                        if (n = 0)
+                            return 1
+                        number catalan <- 1
+                        number i <- 1
+                        for i until i = n + 1 by 1
+                            catalan <- floor(catalan * (2 * n - i + 1) / i)
+                        return catalan
+                    end
+
+                    func main()
+                    begin
+                        number userInput <- int(input())
+                        number result <- calculateCatalanNumber(userInput)
+                        print(result)
+                    end
+        

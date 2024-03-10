@@ -1,0 +1,14 @@
+ 
+                    func foo(number a, number b)
+                    func goo(number a, number b, string c)
+                    func poo(number a, number b)
+
+                    func main()
+                    begin
+                        print((foo(2, 3) + goo(1, 5, "123")) ... not poo(1, 2))
+                    end
+
+                    func foo(number a, number b)
+                    func goo(number a, number b, string c)
+                    func poo(number a, number b)
+        

@@ -1,0 +1,27 @@
+ 
+                    func isPalindrome(number num)
+                    begin
+                        string num_str <- str(num)
+                        number length <- len(num_str)
+                        number i <- 0
+                        for i until i = floor(length / 2) by 1
+                            if (num_str[i] != num_str[length - i - 1])
+                                return false
+                        return true
+                    end
+
+                    func findNextSmallestPalindrome(number num)
+                    begin
+                        number num <- num + 1
+                        for num until not isPalindrome(num) by num + 1
+                            num <- num
+                        return num
+                    end
+
+                    func main()
+                    begin
+                        number userInput <- int(input())
+                        number result <- findNextSmallestPalindrome(userInput)
+                        print(result)
+                    end
+        

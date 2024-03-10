@@ -2,6 +2,64 @@ import unittest
 from TestUtils import TestParser
 
 class ParserSuite(unittest.TestCase):
+    def test_a(self):
+        input = """var a <- true[3,4]
+        """
+        expect = """Error on line 1 col 13: ["""
+        self.assertTrue(TestParser.test(input,expect,401))
+    
+    def test_b(self):
+        input = """
+func main()
+func main1()
+    begin
+        func main2()
+            return
+    end
+        """
+        expect = """Error on line 5 col 8: func"""
+        self.assertTrue(TestParser.test(input,expect,402))
+    
+    def test_c(self):
+        input = """
+func foo(number a[2], number __aaaaa__, string b[1,2,3], bool arr[3.3,4e4,5.,0.5])
+    begin
+        if (f==2)
+            begin
+                if (a<2) continue
+                if (b>3) continue
+                if (c<=4) continue
+                if (d>=5) continue
+                elif (d==5 and (d!=5)) break
+                elif (d!=5 and ((d==__) and d==5)) break
+                elif ((c!="") and (c==0)) return _bool(true)
+                elif ((c==true and (c=4)) and 4=c) return
+                ##else goo(1,2,3)
+                elif (true) begin\nend\n
+                else begin\nend\n
+            end
+        elif (false) begin\nend\n
+    end
+"""
+        expect = """successful"""
+        self.assertTrue(TestParser.test(input,expect,403))
+    
+    def test_d(self):
+        input = """
+number a <- b[1][2] + c
+"""
+        expect = """Error on line 2 col 16: ["""
+        self.assertTrue(TestParser.test(input,expect,404))
+    
+    def test_e(self):
+        input = """
+number a[3] <- b[1] + c
+number b[3] <- (a+b+c)[3]
+"""
+        expect = """Error on line 3 col 22: ["""
+        # expect = """successful"""
+        self.assertTrue(TestParser.test(input,expect,405))
+
     def test_1001(self):
         """test 1001 Source code 1"""
         input = """

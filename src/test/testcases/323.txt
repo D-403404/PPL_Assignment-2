@@ -1,0 +1,2 @@
+ number n[5] <- [getNum(1), getNum(1) + getNum(2), 3, getNum(getNum(5)), getNum(getNum(getNum(123)))]
+        

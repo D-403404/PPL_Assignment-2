@@ -1,0 +1,24 @@
+ 
+                    func calculateAverage(number num1, number num2, number num3)
+                        return (num1 + num2 + num3) / 3
+
+                    func getInputs()
+                    begin
+                        num1 <- toNumber(input("Enter the first number: "))
+                        num2 <- toNumber(input("Enter the second number: "))
+                        num3 <- toNumber(input("Enter the third number: "))
+                        return [num1, num2, num3]
+                    end
+
+                    func displayResult(number average)
+                    begin
+                        print("The average of the numbers is: {}", format(average))
+                    end
+
+                    func main()
+                    begin
+                        number nums[3] <- getInputs()
+                        number average <- calculateAverage(userNum1, userNum2, userNum3)
+                        displayResult(average)
+                    end
+        

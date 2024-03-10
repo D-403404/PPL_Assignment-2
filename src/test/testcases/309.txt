@@ -1,0 +1,6 @@
+ 
+                    number a <- 5
+                    bool b <- a >= 2 + length([1, 2, 3])
+                    bool not_b <- not b
+                    bool c <- add(a, 2) = 3
+                

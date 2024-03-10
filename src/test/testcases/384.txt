@@ -1,0 +1,15 @@
+ 
+                    func calculatePolygonArea(number n, number sideLength)
+                    begin
+                        number area <- (n * pow(sideLength, 2)) / (4 * tan(pi / n))
+                        return area
+                    end
+
+                    func main()
+                    begin
+                        number numOfSides <- toNumber(input())
+                        number sideLength <- toNumber(input())
+                        number result <- calculatePolygonArea(numOfSides, sideLength)
+                        print(result)
+                    end
+        

@@ -1,0 +1,1 @@
+Program([VarDecl(Id(s), ArrayType([1.0, 1.0, 1.0], StringType), None, ArrayLit(ArrayLit(ArrayLit(StringLit(arr in arr in arr)))))])

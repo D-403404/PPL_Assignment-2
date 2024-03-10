@@ -1,0 +1,28 @@
+ 
+                    func calculateCubeRoot(number a, number b, number c, number d)
+                    begin
+                        number result <- (d - (pow(a, 3))) / (pow(b, 3) - 3*a*b*c + 3*(pow(a, 2))*(pow(c, 2)) - (pow(b, 2))*(pow(c, 2)))
+                        return result
+                    end
+
+                    func getUserInput()
+                    begin
+                        number a <- toNumber(input("Enter the coefficient a: "))
+                        number b <- toNumber(input("Enter the coefficient b: "))
+                        number c <- toNumber(input("Enter the coefficient c: "))
+                        number d <- toNumber(input("Enter the coefficient d: "))
+                        return [a, b, c, d]
+                    end
+
+                    func displayResult(number result)
+                    begin
+                        print("The cube root is: {}", format(result))
+                    end
+
+                    func main()
+                    begin
+                        number nums[4] <- getUserInput()
+                        number result <- calculateCubeRoot(nums[0], nums[1], nums[2], nums[3])
+                        displayResult(result)
+                    end
+        

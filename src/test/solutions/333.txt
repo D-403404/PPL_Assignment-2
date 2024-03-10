@@ -1,0 +1,1 @@
+Program([FuncDecl(Id(main), [], Block([Block([Block([Block([VarDecl(Id(s), StringType, None, StringLit(block stmt in block stmt in block stmt in...))])])])]))])

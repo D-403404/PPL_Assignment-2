@@ -1,0 +1,35 @@
+ 
+                    
+                    dynamic c
+                    number a <- 7
+
+
+                    var d <- 5
+
+                    bool b
+
+                    func greetUser(string name)
+                    begin
+                        print(("Hello, " ... name) ... "! Welcome to the world of Python.")
+                    end
+
+                    
+
+                    func main()
+                    begin
+                        username <- input("What's your name? ")
+                        greetUser(username)
+                    end
+
+                    func greetUser(string name)
+
+
+
+                    func greetUser2(string name)
+
+
+                    func greetUser2(string name)
+                    begin
+                        print(("Hello, " ... name) ... "! Welcome to the world of Python.")
+                    end
+        

@@ -1,0 +1,1 @@
+Program([VarDecl(Id(c), None, var, BinaryOp(*, NumLit(5.0), NumLit(2.0))), VarDecl(Id(d), None, var, BinaryOp(or, BooleanLit(False), UnaryOp(not, BooleanLit(True)))), VarDecl(Id(e), None, var, StringLit(hi)), VarDecl(Id(f), None, dynamic, BinaryOp(+, BinaryOp(+, CallExpr(Id(boolean), [Id(c)]), CallExpr(Id(boolean), [Id(d)])), CallExpr(Id(boolean), [Id(e)])))])

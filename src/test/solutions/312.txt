@@ -1,0 +1,1 @@
+Program([VarDecl(Id(s), StringType, None, BinaryOp(..., BinaryOp(..., StringLit(Hi there, welcome to '"Magical Land'". Come on!), StringLit(Ok let's go baby!)), StringLit(What are you waiting for?))), VarDecl(Id(t), StringType, None, BinaryOp(..., CallExpr(Id(lower), [BinaryOp(..., Id(s), CallExpr(Id(upper), [Id(s)]))]), CallExpr(Id(reverse), [Id(s)])))])

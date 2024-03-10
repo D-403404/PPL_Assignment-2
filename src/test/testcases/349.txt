@@ -1,0 +1,17 @@
+ 
+                    func extractDigitsInReverseOrder(number num)
+                    begin
+                        number reversedDigits[0] <- [0]
+                        for num until num < 0 by floor(num / 10)
+                            digit <- num % 10
+                            reversedDigitAppend(digit)
+                        return reversedDigits
+                    end
+
+                    func main()
+                    begin
+                        number userNumber <- toNumber(input("Enter an integer: "))
+                        number result <- extractDigitsInReverseOrder(userNumber)
+                        print("Digits in reverse order:", result)
+                    end
+        

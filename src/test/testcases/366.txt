@@ -1,0 +1,18 @@
+ 
+                    func removeSpecialSymbols(string inputString)
+                    begin
+                        string result <- ""
+                        symbols <- "!#$%&'()*+,-./:;<=>?@[]^_`{|}~"
+                        for char until char = length(inputString) by 1
+                            if (not symbols)
+                                result <- result + char
+                        return result
+                    end
+
+                    func main()
+                    begin
+                        string userString <- input("Enter a string: ")
+                        string result <- removeSpecialSymbols(userString)
+                        print("Result after removing special symbols:", result)
+                    end
+        

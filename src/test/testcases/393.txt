@@ -1,0 +1,14 @@
+ 
+                    func roundDecimal(number num, number precision)
+                        return round(num, precision)
+
+                    func main()
+                    begin
+                        userInput <- toNumber(input())
+                        precisionInput <- toNumber(input())
+
+                        roundedResult <- roundDecimal(userInput, precisionInput)
+
+                        print(roundedResult)
+                    end
+        
