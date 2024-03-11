@@ -17,10 +17,10 @@
                             if (userAnswer = answers[i])
                             begin
                                 intScore <- intScore + 1
-                                print("Correct!\n")
+                                print("Correct!")
                             end
                             else
-                                print("Incorrect. The correct answer is: {}\n", format(choices[i, answers[i]]))
+                                print("Incorrect. The correct answer is: {}", format(choices[i, answers[i]]))
                         end
                         return intScore
                     end
