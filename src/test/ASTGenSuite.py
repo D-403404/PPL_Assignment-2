@@ -2319,3 +2319,345 @@ end
 """
         expect = 'Program([FuncDecl(Id(average), [VarDecl(Id(a), NumberType, None, None), VarDecl(Id(n), NumberType, None, None)], Block([VarDecl(Id(sum), NumberType, None, NumLit(0.0)), VarDecl(Id(i), NumberType, None, NumLit(0.0)), For(Id(i), BinaryOp(>=, Id(i), Id(n)), NumLit(1.0), AssignStmt(Id(sum), BinaryOp(+, Id(sum), ArrayCell(Id(a), [Id(i)])))), Return(BinaryOp(/, Id(sum), Id(n)))]))])'
         self.assertTrue(TestAST.test(input, expect, 2090))
+    
+    def test_91(self):
+        input = """ 
+func remove_all_occurrence(number arr, number target, number n)
+begin
+    number cnt <- 0
+    
+    ## Shifting non target elements 
+    ## to the left side
+    number i <- 0
+    for i until i >= n by 1
+    begin
+        if(arr[i] != target)
+            arr[i - cnt] <- arr[i] 
+        else
+            cnt <- 1+cnt
+    end
+    
+    ## Printing the array
+    number i <- 0
+    for i until i >= n - cnt by 1
+    begin
+        writeString(arr[i] ... " ")
+    end
+    return
+end
+ 
+## Driver code
+func main() 
+begin
+    number arr[11] <- [1, 4, 3, 6, 8, 3, 9, 10, 3, 3, 7]
+    number target <- 3
+    remove_all_occurrence(arr, target, 11)
+end
+"""
+        expect = 'Program([FuncDecl(Id(remove_all_occurrence), [VarDecl(Id(arr), NumberType, None, None), VarDecl(Id(target), NumberType, None, None), VarDecl(Id(n), NumberType, None, None)], Block([VarDecl(Id(cnt), NumberType, None, NumLit(0.0)), VarDecl(Id(i), NumberType, None, NumLit(0.0)), For(Id(i), BinaryOp(>=, Id(i), Id(n)), NumLit(1.0), Block([If((BinaryOp(!=, ArrayCell(Id(arr), [Id(i)]), Id(target)), AssignStmt(ArrayCell(Id(arr), [BinaryOp(-, Id(i), Id(cnt))]), ArrayCell(Id(arr), [Id(i)]))), [], AssignStmt(Id(cnt), BinaryOp(+, NumLit(1.0), Id(cnt))))])), VarDecl(Id(i), NumberType, None, NumLit(0.0)), For(Id(i), BinaryOp(>=, Id(i), BinaryOp(-, Id(n), Id(cnt))), NumLit(1.0), Block([CallStmt(Id(writeString), [BinaryOp(..., ArrayCell(Id(arr), [Id(i)]), StringLit( ))])])), Return()])), FuncDecl(Id(main), [], Block([VarDecl(Id(arr), ArrayType([11.0], NumberType), None, ArrayLit(NumLit(1.0), NumLit(4.0), NumLit(3.0), NumLit(6.0), NumLit(8.0), NumLit(3.0), NumLit(9.0), NumLit(10.0), NumLit(3.0), NumLit(3.0), NumLit(7.0))), VarDecl(Id(target), NumberType, None, NumLit(3.0)), CallStmt(Id(remove_all_occurrence), [Id(arr), Id(target), NumLit(11.0)])]))])'
+        self.assertTrue(TestAST.test(input, expect, 2091))
+    
+    def test_92(self):
+        input = """ 
+## This function returns new size of modified array
+func removeDuplicates(number arr) 
+begin 
+  
+    number temp[10] 
+  
+    ## Start traversing elements 
+    number j <- 0 
+  
+    ## If current element is not equal  
+    ## to next element then store that  
+    ## current element 
+    number i <- 0
+    for i until i >= (n - 1) by 1
+        if (arr[i] != arr[i + 1]) 
+        begin
+            temp[j+1] <- arr[i] 
+            j <- 1+j
+        end
+  
+    ## Store the last element as whether  
+    ## it is unique or repeated, it hasn't  
+    ## stored previously 
+    temp[j] <- arr[n - 1] 
+    j <- j+1
+  
+    ## Modify original array 
+    i <- 0
+    for i until i >= j by 1
+        arr[i] <- temp[i] 
+  
+    return j 
+end 
+  
+## Driver code 
+func main() 
+begin 
+    number arr[10] <- [1, 2, 2, 3, 4, 4, 4, 5, 5, 1]
+  
+    ## RemoveDuplicates() returns  
+    ## new size of array
+    n <- removeDuplicates(arr) 
+  
+    ## Print updated array 
+    number i <- 0
+    for i until i >= n by 1
+        writeString(arr[i] ... " " )
+end 
+"""
+        expect = 'Program([FuncDecl(Id(removeDuplicates), [VarDecl(Id(arr), NumberType, None, None)], Block([VarDecl(Id(temp), ArrayType([10.0], NumberType), None, None), VarDecl(Id(j), NumberType, None, NumLit(0.0)), VarDecl(Id(i), NumberType, None, NumLit(0.0)), For(Id(i), BinaryOp(>=, Id(i), BinaryOp(-, Id(n), NumLit(1.0))), NumLit(1.0), If((BinaryOp(!=, ArrayCell(Id(arr), [Id(i)]), ArrayCell(Id(arr), [BinaryOp(+, Id(i), NumLit(1.0))])), Block([AssignStmt(ArrayCell(Id(temp), [BinaryOp(+, Id(j), NumLit(1.0))]), ArrayCell(Id(arr), [Id(i)])), AssignStmt(Id(j), BinaryOp(+, NumLit(1.0), Id(j)))])), [], None)), AssignStmt(ArrayCell(Id(temp), [Id(j)]), ArrayCell(Id(arr), [BinaryOp(-, Id(n), NumLit(1.0))])), AssignStmt(Id(j), BinaryOp(+, Id(j), NumLit(1.0))), AssignStmt(Id(i), NumLit(0.0)), For(Id(i), BinaryOp(>=, Id(i), Id(j)), NumLit(1.0), AssignStmt(ArrayCell(Id(arr), [Id(i)]), ArrayCell(Id(temp), [Id(i)]))), Return(Id(j))])), FuncDecl(Id(main), [], Block([VarDecl(Id(arr), ArrayType([10.0], NumberType), None, ArrayLit(NumLit(1.0), NumLit(2.0), NumLit(2.0), NumLit(3.0), NumLit(4.0), NumLit(4.0), NumLit(4.0), NumLit(5.0), NumLit(5.0), NumLit(1.0))), AssignStmt(Id(n), CallExpr(Id(removeDuplicates), [Id(arr)])), VarDecl(Id(i), NumberType, None, NumLit(0.0)), For(Id(i), BinaryOp(>=, Id(i), Id(n)), NumLit(1.0), CallStmt(Id(writeString), [BinaryOp(..., ArrayCell(Id(arr), [Id(i)]), StringLit( ))]))]))])'
+        self.assertTrue(TestAST.test(input, expect, 2092))
+    
+    def test_93(self):
+        input = """ 
+## This function returns new size of modified array
+func removeDuplicates(number arr, number n) 
+begin 
+    ## To store index of next  
+    ## unique element 
+    number j <- 0 
+    number i <- 0 
+  
+    for i until i >= n - 1 by 1
+        if (arr[i] != arr[i + 1]) begin
+            arr[j] <- arr[i] 
+            j <- 1 +j
+            end
+  
+    arr[j] <- arr[n - 1] 
+    j <- j +1
+  
+    return j 
+end 
+  
+## Driver code 
+func main() 
+begin 
+    number arr[10] <- [1, 2, 2, 3, 4, 4, 4, 5, 5, 1]
+  
+    ## RemoveDuplicates() returns  
+    ## new size of array
+    n <- removeDuplicates(arr, 10) 
+  
+    ## Print updated array 
+    number i <- 0
+    for i until i >= n by 1
+        writeString(  \t  arr[i]       ...  \t" " )
+end 
+"""
+        expect = 'Program([FuncDecl(Id(removeDuplicates), [VarDecl(Id(arr), NumberType, None, None), VarDecl(Id(n), NumberType, None, None)], Block([VarDecl(Id(j), NumberType, None, NumLit(0.0)), VarDecl(Id(i), NumberType, None, NumLit(0.0)), For(Id(i), BinaryOp(>=, Id(i), BinaryOp(-, Id(n), NumLit(1.0))), NumLit(1.0), If((BinaryOp(!=, ArrayCell(Id(arr), [Id(i)]), ArrayCell(Id(arr), [BinaryOp(+, Id(i), NumLit(1.0))])), Block([AssignStmt(ArrayCell(Id(arr), [Id(j)]), ArrayCell(Id(arr), [Id(i)])), AssignStmt(Id(j), BinaryOp(+, NumLit(1.0), Id(j)))])), [], None)), AssignStmt(ArrayCell(Id(arr), [Id(j)]), ArrayCell(Id(arr), [BinaryOp(-, Id(n), NumLit(1.0))])), AssignStmt(Id(j), BinaryOp(+, Id(j), NumLit(1.0))), Return(Id(j))])), FuncDecl(Id(main), [], Block([VarDecl(Id(arr), ArrayType([10.0], NumberType), None, ArrayLit(NumLit(1.0), NumLit(2.0), NumLit(2.0), NumLit(3.0), NumLit(4.0), NumLit(4.0), NumLit(4.0), NumLit(5.0), NumLit(5.0), NumLit(1.0))), AssignStmt(Id(n), CallExpr(Id(removeDuplicates), [Id(arr), NumLit(10.0)])), VarDecl(Id(i), NumberType, None, NumLit(0.0)), For(Id(i), BinaryOp(>=, Id(i), Id(n)), NumLit(1.0), CallStmt(Id(writeString), [BinaryOp(..., ArrayCell(Id(arr), [Id(i)]), StringLit( ))]))]))])'
+        self.assertTrue(TestAST.test(input, expect, 2093))
+    
+    def test_94(self):
+        input = """ 
+## Function to rotate array to the left by d times
+func Rotate(number arr, number d)
+begin
+    ## Storing rotated version of array
+    number temp[20]
+    number n <- size(arr)
+ 
+    ## Keeping track of the current index
+    ## of temp[]
+    number k <- 0
+ 
+    ## Storing the n - d elements of
+    ## array arr[] to the front of temp[]
+    number i <- d
+    for i until i >= n by 1 begin
+        temp[k] <- arr[i]
+        k<-k+1
+    end
+ 
+    ## Storing the first d elements of array arr[]
+    ##  into temp
+    i <- 0
+    for i until i >= d by 1 begin
+        temp[k] <- arr[i]
+        k<-1+k
+    end
+ 
+    ## Copying the elements of temp[] in arr[]
+    ## to get the final rotated array
+    i <- 0
+    for i until i >= n by 1 begin
+        arr[i] <- temp[i]
+    end
+end
+"""
+        expect = 'Program([FuncDecl(Id(Rotate), [VarDecl(Id(arr), NumberType, None, None), VarDecl(Id(d), NumberType, None, None)], Block([VarDecl(Id(temp), ArrayType([20.0], NumberType), None, None), VarDecl(Id(n), NumberType, None, CallExpr(Id(size), [Id(arr)])), VarDecl(Id(k), NumberType, None, NumLit(0.0)), VarDecl(Id(i), NumberType, None, Id(d)), For(Id(i), BinaryOp(>=, Id(i), Id(n)), NumLit(1.0), Block([AssignStmt(ArrayCell(Id(temp), [Id(k)]), ArrayCell(Id(arr), [Id(i)])), AssignStmt(Id(k), BinaryOp(+, Id(k), NumLit(1.0)))])), AssignStmt(Id(i), NumLit(0.0)), For(Id(i), BinaryOp(>=, Id(i), Id(d)), NumLit(1.0), Block([AssignStmt(ArrayCell(Id(temp), [Id(k)]), ArrayCell(Id(arr), [Id(i)])), AssignStmt(Id(k), BinaryOp(+, NumLit(1.0), Id(k)))])), AssignStmt(Id(i), NumLit(0.0)), For(Id(i), BinaryOp(>=, Id(i), Id(n)), NumLit(1.0), Block([AssignStmt(ArrayCell(Id(arr), [Id(i)]), ArrayCell(Id(temp), [Id(i)]))]))]))])'
+        self.assertTrue(TestAST.test(input, expect, 2094))
+    
+    def test_95(self):
+        input = """ 
+## Function to rotate array to the left by d times
+func Rotate(number arr, number d, number n)
+begin
+    number p <- 1
+    for p until p>d by 1
+    begin
+        number last <- arr[0]
+        number i <- 0
+        for i until i >= n - 1 by 1begin
+            arr[i] <- arr[i + 1]
+        end
+        arr[n - 1] <- last
+    end
+end
+"""
+        expect = 'Program([FuncDecl(Id(Rotate), [VarDecl(Id(arr), NumberType, None, None), VarDecl(Id(d), NumberType, None, None), VarDecl(Id(n), NumberType, None, None)], Block([VarDecl(Id(p), NumberType, None, NumLit(1.0)), For(Id(p), BinaryOp(>, Id(p), Id(d)), NumLit(1.0), Block([VarDecl(Id(last), NumberType, None, ArrayCell(Id(arr), [NumLit(0.0)])), VarDecl(Id(i), NumberType, None, NumLit(0.0)), For(Id(i), BinaryOp(>=, Id(i), BinaryOp(-, Id(n), NumLit(1.0))), NumLit(1.0), Block([AssignStmt(ArrayCell(Id(arr), [Id(i)]), ArrayCell(Id(arr), [BinaryOp(+, Id(i), NumLit(1.0))]))])), AssignStmt(ArrayCell(Id(arr), [BinaryOp(-, Id(n), NumLit(1.0))]), Id(last))]))]))])'
+        self.assertTrue(TestAST.test(input, expect, 2095))
+    
+    def test_96(self):
+        input = """ 
+## Function for print prime
+## number in given range
+func primeInRange(number L, number R)
+begin
+    number flag
+ 
+    ## Traverse each number in the
+    ## interval with the help of for loop
+    number i <- L
+    for i until i > R by 1 begin
+ 
+        ## Skip 0 and 1 as they are
+        ## neither prime nor composite
+        if (i == 1 or (i == 0))
+            continue
+ 
+        ## flag variable to tell
+        ## if i is prime or not
+        flag <- 1
+ 
+        ## Iterate to check if i is prime
+        ## or not
+        number j <- 2
+        for j until j > i / 2 by 1 begin
+            if (i % j = 0)begin
+                flag <- 0
+                break
+            end
+        end
+ 
+        ## flag = 1 means i is prime
+        ## and flag = 0 means i is not prime
+        if (flag = 1)
+            writeString(i ... " ")
+    end
+end
+"""
+        expect = 'Program([FuncDecl(Id(primeInRange), [VarDecl(Id(L), NumberType, None, None), VarDecl(Id(R), NumberType, None, None)], Block([VarDecl(Id(flag), NumberType, None, None), VarDecl(Id(i), NumberType, None, Id(L)), For(Id(i), BinaryOp(>, Id(i), Id(R)), NumLit(1.0), Block([If((BinaryOp(==, Id(i), BinaryOp(or, NumLit(1.0), BinaryOp(==, Id(i), NumLit(0.0)))), Continue), [], None), AssignStmt(Id(flag), NumLit(1.0)), VarDecl(Id(j), NumberType, None, NumLit(2.0)), For(Id(j), BinaryOp(>, Id(j), BinaryOp(/, Id(i), NumLit(2.0))), NumLit(1.0), Block([If((BinaryOp(=, BinaryOp(%, Id(i), Id(j)), NumLit(0.0)), Block([AssignStmt(Id(flag), NumLit(0.0)), Break])), [], None)])), If((BinaryOp(=, Id(flag), NumLit(1.0)), CallStmt(Id(writeString), [BinaryOp(..., Id(i), StringLit( ))])), [], None)]))]))])'
+        self.assertTrue(TestAST.test(input, expect, 2096))
+    
+    def test_97(self):
+        input = """ 
+## Function check whether a number
+## is prime or not
+func isPrime(number n)
+begin
+    ## Check if n=2 or n=3
+    if ((n == 2) or (n = 3))
+        return true
+    ## Check whether n is divisible by 2 or 3
+    if ((n % 2 =0) or (n % 3==0))
+        return false
+ 
+    ## Check from 5 to square root of n
+    ## Iterate i by (i+6)
+    number i <- 5
+    for  i until i * i > n by 6
+        if ((n % i == 0) or (n % (i + 2) == 0))
+            return false
+ 
+    return true
+end
+ 
+## Function for print prime
+## number in given range
+func primeInRange(number L, number R)
+begin
+ 
+    ## Skip 0 and 1 as they are
+    ## neither prime nor composite
+    ## and also if 2 is in range
+    ## then print it
+    if ((R >= 2) and (L <= 2)) begin
+        writeNumber(2)
+        L <- 3
+    end
+ 
+    ## Making sure that L is odd before
+    ## beginning the loop
+    if (L % 2 == 0)
+        L<-L+1
+ 
+    ## NOTE : We traverse through
+    ## odd numbers only
+    number i <- L
+    for i until i > R by 2 begin
+ 
+        ## If number is prime print it
+        if (isPrime(i))
+            writeNumber(i)
+    end
+end
+"""
+        expect = 'Program([FuncDecl(Id(isPrime), [VarDecl(Id(n), NumberType, None, None)], Block([If((BinaryOp(or, BinaryOp(==, Id(n), NumLit(2.0)), BinaryOp(=, Id(n), NumLit(3.0))), Return(BooleanLit(True))), [], None), If((BinaryOp(or, BinaryOp(=, BinaryOp(%, Id(n), NumLit(2.0)), NumLit(0.0)), BinaryOp(==, BinaryOp(%, Id(n), NumLit(3.0)), NumLit(0.0))), Return(BooleanLit(False))), [], None), VarDecl(Id(i), NumberType, None, NumLit(5.0)), For(Id(i), BinaryOp(>, BinaryOp(*, Id(i), Id(i)), Id(n)), NumLit(6.0), If((BinaryOp(or, BinaryOp(==, BinaryOp(%, Id(n), Id(i)), NumLit(0.0)), BinaryOp(==, BinaryOp(%, Id(n), BinaryOp(+, Id(i), NumLit(2.0))), NumLit(0.0))), Return(BooleanLit(False))), [], None)), Return(BooleanLit(True))])), FuncDecl(Id(primeInRange), [VarDecl(Id(L), NumberType, None, None), VarDecl(Id(R), NumberType, None, None)], Block([If((BinaryOp(and, BinaryOp(>=, Id(R), NumLit(2.0)), BinaryOp(<=, Id(L), NumLit(2.0))), Block([CallStmt(Id(writeNumber), [NumLit(2.0)]), AssignStmt(Id(L), NumLit(3.0))])), [], None), If((BinaryOp(==, BinaryOp(%, Id(L), NumLit(2.0)), NumLit(0.0)), AssignStmt(Id(L), BinaryOp(+, Id(L), NumLit(1.0)))), [], None), VarDecl(Id(i), NumberType, None, Id(L)), For(Id(i), BinaryOp(>, Id(i), Id(R)), NumLit(2.0), Block([If((CallExpr(Id(isPrime), [Id(i)]), CallStmt(Id(writeNumber), [Id(i)])), [], None)]))]))])'
+        self.assertTrue(TestAST.test(input, expect, 2097))
+    
+    def test_98(self):
+        input = """ 
+## Function to print the divisors 
+func printDivisors(number n) 
+begin 
+    ## Note that this loop runs  
+    ## till square root 
+    number i <- 1
+    for i until i > sqrt(n) by 1 
+    begin 
+        if (n % i == 0) 
+        begin 
+            ## If divisors are equal,  
+            ## print only one 
+            if (n / i == i) 
+                writeString(" "... i )
+  
+            ## Otherwise print both 
+            else 
+                writeString((" "... i) ... (" " ...str( n / i)) )
+        end 
+    end 
+end 
+"""
+        expect = 'Program([FuncDecl(Id(printDivisors), [VarDecl(Id(n), NumberType, None, None)], Block([VarDecl(Id(i), NumberType, None, NumLit(1.0)), For(Id(i), BinaryOp(>, Id(i), CallExpr(Id(sqrt), [Id(n)])), NumLit(1.0), Block([If((BinaryOp(==, BinaryOp(%, Id(n), Id(i)), NumLit(0.0)), Block([If((BinaryOp(==, BinaryOp(/, Id(n), Id(i)), Id(i)), CallStmt(Id(writeString), [BinaryOp(..., StringLit( ), Id(i))])), [], CallStmt(Id(writeString), [BinaryOp(..., BinaryOp(..., StringLit( ), Id(i)), BinaryOp(..., StringLit( ), CallExpr(Id(str), [BinaryOp(/, Id(n), Id(i))])))]))])), [], None)]))]))])'
+        self.assertTrue(TestAST.test(input, expect, 2098))
+    
+    def test_99(self):
+        input = """ 
+## Print the multiplication table of a number up to a range
+func main()
+begin
+    ## Change here to change
+    ## input number
+    number n <- 8
+ 
+    number range <- readNumber()
+    number i <- 1
+    for i until i > range by 1
+        writeString((n ... (" * " ... i) )... (" = " ...(str( n * i)..."\\\\n")))
+end
+"""
+        expect = 'Program([FuncDecl(Id(main), [], Block([VarDecl(Id(n), NumberType, None, NumLit(8.0)), VarDecl(Id(range), NumberType, None, CallExpr(Id(readNumber), [])), VarDecl(Id(i), NumberType, None, NumLit(1.0)), For(Id(i), BinaryOp(>, Id(i), Id(range)), NumLit(1.0), CallStmt(Id(writeString), [BinaryOp(..., BinaryOp(..., Id(n), BinaryOp(..., StringLit( * ), Id(i))), BinaryOp(..., StringLit( = ), BinaryOp(..., CallExpr(Id(str), [BinaryOp(*, Id(n), Id(i))]), StringLit(\\\\n))))]))]))])'
+        self.assertTrue(TestAST.test(input, expect, 2099))
+    
+    def test_100(self):
+        input = """
+func main(string str)
+    return str(12-03-2024)
+"""
+        expect = 'Program([FuncDecl(Id(main), [VarDecl(Id(str), StringType, None, None)], Return(CallExpr(Id(str), [BinaryOp(-, BinaryOp(-, NumLit(12.0), NumLit(3.0)), NumLit(2024.0))])))])'
+        self.assertTrue(TestAST.test(input, expect, 2100))

@@ -62,29 +62,40 @@ number b[3] <- (a+b+c)[3]
     
     def test_f(self):
         input = """ 
-## Function to check whether string
-## is palindrome
-func isPalindrome(string S)
-begin
-    ## Iterate over the range [0, N/2]
+## This function returns new size of modified array
+func removeDuplicates(number arr, number n) 
+begin 
+    ## To store index of next  
+    ## unique element 
+    number j <- 0 
+    number i <- 0 
+  
+    for i until i >= n - 1 by 1
+        if (arr[i] != arr[i + 1]) begin
+            arr[j] <- arr[i] 
+            j <- 1 +j
+            end
+  
+    arr[j] <- arr[n - 1] 
+    j <- j +1
+  
+    return j 
+end 
+  
+## Driver code 
+func main() 
+begin 
+    number arr[10] <- [1, 2, 2, 3, 4, 4, 4, 5, 5, 1]
+  
+    ## RemoveDuplicates() returns  
+    ## new size of array
+    n <- removeDuplicates(arr, 10) 
+  
+    ## Print updated array 
     number i <- 0
-    for i until i >= length(S) / 2 by 1 begin
- 
-        ## If S[i] is not equal to
-        ## the S[N-i-1]
-        if (S[i] != S[length(S) - i - 1]) begin
-            return "No"
-        end
-    end
-    return "Yes"
-end
- 
-## Driver Code
-func main()
-begin
-    string S <- "_xyzYzyx_"
-    writeString(isPalindrome(S))
-end
+    for i until i >= n by 1
+        writeString(  \t  arr[i]       ...  \t" " )
+end 
 """
         expect = """successful"""
         # expect = """successful"""
