@@ -4,6 +4,8 @@ from ZCodeVisitor import ZCodeVisitor
 from ZCodeParser import ZCodeParser
 from AST import *
 
+# from main.zcode.utils.AST import *
+
 class ASTGeneration(ZCodeVisitor):
 
     "program: declarationLst EOF;"
