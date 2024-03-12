@@ -1,13 +1,10 @@
+# Nguyễn Thành Đạt - 2152506
+
 from ZCodeVisitor import ZCodeVisitor
 from ZCodeParser import ZCodeParser
 from AST import *
 
-# from main.zcode.utils.AST import *
-
 class ASTGeneration(ZCodeVisitor):
-
-    # def visitProgram(self, ctx: ZCodeParser.ProgramContext):
-    #     return Program([VarDecl(Id(ctx.IDENTIFIER().getText()), NumberType())])
 
     "program: declarationLst EOF;"
     def visitProgram(self, ctx: ZCodeParser.ProgramContext):
@@ -20,12 +17,6 @@ class ASTGeneration(ZCodeVisitor):
         else:
             return [self.visit(ctx.stmt_declaration())]
     
-    # def visitNewlineLst_0(self, ctx: ZCodeParser.NewlineLst_0Context):
-    #     return None
-    
-    # def visitNewlineLst_1(self, ctx: ZCodeParser.NewlineLst_1Context):
-    #     return None
-    
 
 
     "arrayElement: IDENTIFIER expr_element | stmt_func_call expr_element;"
@@ -34,7 +25,6 @@ class ASTGeneration(ZCodeVisitor):
             return ArrayCell(Id(ctx.IDENTIFIER().getText()), self.visit(ctx.expr_element()))
         elif ctx.expr_func_call():
             return ArrayCell(self.visit(ctx.expr_func_call()), self.visit(ctx.expr_element()))
-        # return ArrayCell(self.visit(ctx.operand()), self.visit(ctx.expr_element()))
     
     "expr_element: SB_LEFTSQUARE op_index SB_RIGHTSQUARE;"
     def visitExpr_element(self, ctx: ZCodeParser.Expr_elementContext):
@@ -52,7 +42,6 @@ class ASTGeneration(ZCodeVisitor):
     "op_unary_index: arrayElement;"
     def visitOp_unary_index(self, ctx: ZCodeParser.Op_unary_indexContext):
         return self.visit(ctx.arrayElement())
-        # return self.visit(ctx.expr_element())
     
     "op_unary_sign: OP_MINUS;"
     def visitOp_unary_sign(self, ctx: ZCodeParser.Op_unary_signContext):
@@ -176,10 +165,6 @@ class ASTGeneration(ZCodeVisitor):
             return self.visit(ctx.op_unary_index())
         else:
             return self.visit(ctx.operand())
-        # if ctx.op_unary_index():
-        #     return UnaryOp(self.visit(ctx.op_unary_index()), self.visit(ctx.operand()))
-        # else:
-        #     return self.visit(ctx.operand())
     
     "operand: IDENTIFIER | NUMBER | BOOL | STRING | arrayValue | expr_func_call | SB_LEFTBRACKET expr SB_RIGHTBRACKET;"
     def visitOperand(self, ctx: ZCodeParser.OperandContext):
@@ -188,7 +173,6 @@ class ASTGeneration(ZCodeVisitor):
         elif ctx.NUMBER():
             return NumberLiteral(float(ctx.NUMBER().getText()))
         elif ctx.BOOL():
-            # return BooleanLiteral(ctx.BOOL().getText())
             return BooleanLiteral(ctx.BOOL().getText() == 'true')
         elif ctx.STRING():
             return StringLiteral(ctx.STRING().getText())
@@ -280,10 +264,6 @@ class ASTGeneration(ZCodeVisitor):
             return VarDecl(array_id[0], ArrayType(array_id[1], self.visit(ctx.kw_type_explicit())), None, self.visit(ctx.array_init()))
         else:
             return VarDecl(array_id[0], ArrayType(array_id[1], self.visit(ctx.kw_type_explicit())), None, None)
-        # if ctx.array_init():
-        #     return VarDecl(Id(ctx.IDENTIFIER().getText()), ArrayType(self.visit(ctx.arrayDim()), self.visit(ctx.kw_type_explicit())), None, self.visit(ctx.array_init()))
-        # else:
-        #     return VarDecl(Id(ctx.IDENTIFIER().getText()), ArrayType(self.visit(ctx.arrayDim()), self.visit(ctx.kw_type_explicit())), None, None)
     
     "arrayId: IDENTIFIER SB_LEFTSQUARE arrayDim SB_RIGHTSQUARE;"
     def visitArrayId(self, ctx: ZCodeParser.ArrayIdContext):
@@ -296,10 +276,8 @@ class ASTGeneration(ZCodeVisitor):
         else:
             return [float(ctx.NUMBER().getText())]
     
-    # "array_init: OP_ASSIGN arrayValue;"
     "array_init: value_init;"
     def visitArray_init(self, ctx: ZCodeParser.Array_initContext):
-        # return self.visit(ctx.arrayValue())
         return self.visit(ctx.value_init())
     
     "arrayValue: SB_LEFTSQUARE exprLst SB_RIGHTSQUARE;"
@@ -343,10 +321,6 @@ class ASTGeneration(ZCodeVisitor):
         else:
             array_id = self.visit(ctx.arrayId())
             return VarDecl(array_id[0], ArrayType(array_id[1], self.visit(ctx.kw_type_explicit())), None, None)
-        # if not ctx.arrayDim():
-        #     return VarDecl(Id(ctx.IDENTIFIER().getText()), self.visit(ctx.kw_type_explicit()), None, None)
-        # else:
-        #     return VarDecl(ArrayType(self.visit(ctx.arrayDim()), self.visit(ctx.kw_type_explicit())), self.visit(ctx.kw_type_explicit()), None, None)
     
     "func_body: stmt_return | stmt_block | ;"
     def visitFunc_body(self, ctx: ZCodeParser.Func_bodyContext):
@@ -359,9 +333,6 @@ class ASTGeneration(ZCodeVisitor):
     
 
 
-    # def visitStatement_type(self, ctx: ZCodeParser.Statement_typeContext):
-    #     return None
-    
     """
     statement:
         stmt_var_declaration SB_NEWLINE+ 
@@ -439,7 +410,6 @@ class ASTGeneration(ZCodeVisitor):
 	    if_statement SB_NEWLINE* elifLst else_statement;
     """
     def visitStmt_if(self, ctx: ZCodeParser.Stmt_ifContext):
-        # return If(self.visit(ctx.if_statement())[0], self.visit(ctx.if_statement())[1], self.visit(ctx.elifLst()), self.visit(ctx.else_statement()))
         if_stmt = self.visit(ctx.if_statement())
         return If(if_stmt[0], if_stmt[1], self.visit(ctx.elifLst()), self.visit(ctx.else_statement()))
     

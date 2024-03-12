@@ -54,8 +54,6 @@ else writeString("1")
 end
 """
         expect = "Program([FuncDecl(Id(main), [], Block([If((NumLit(1.0), CallStmt(Id(writeString), [StringLit(1)])), [(NumLit(2.0), If((NumLit(3.0), CallStmt(Id(writeString), [StringLit(1)])), [(NumLit(4.0), CallStmt(Id(writeString), [StringLit(1)]))], CallStmt(Id(writeString), [StringLit(1)])))], None)]))])"
-        # expect = str(Program([FuncDecl(Id('main'), [], Block([If(NumberLiteral(1.0), CallStmt(Id('writeString'), [StringLiteral(1)]), [(NumberLiteral(2.0), If(NumberLiteral(3.0), CallStmt(Id('writeString'), [StringLiteral(1)]), [(NumberLiteral(4.0), CallStmt(Id('writeString'), [StringLiteral(1)]))], CallStmt(Id('writeString'), [StringLiteral(1)])))], None)]))]))
-        # print(expect==expect1) # True
         self.assertTrue(TestAST.test(input, expect, 305))
 
     def test_simple_program_7(self):
@@ -209,7 +207,6 @@ end
                         NumberLiteral(1.), 
                         Block([If(BinaryOp('=', BinaryOp('%', Id('x'), Id('i')), NumberLiteral(0.)), Return(BooleanLiteral(False)), [], None)])),
                     Return(BooleanLiteral(True))]))]))
-        # print(expect)
         self.assertTrue(TestAST.test(input, expect, 2005))
     
     def test_6(self):
@@ -355,7 +352,6 @@ func foo(number a[2], number __aaaaa__, string b[1,2,3], bool arr[3.3,4e4,5.,0.5
                                         CallStmt(Id('goo'), [NumberLiteral(1.), NumberLiteral(2.), NumberLiteral(3.)])), 
                                 [(BooleanLiteral(True), Block([]))], Block([]))]), 
                         [(BooleanLiteral(False), Block([]))], None)]))]))
-        # print(expect)
         self.assertTrue(TestAST.test(input, expect, 2013))
     
     def test_14(self):

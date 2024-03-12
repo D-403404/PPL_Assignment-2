@@ -13,9 +13,6 @@ options {
 program: declarationLst EOF;
 declarationLst: SB_NEWLINE* stmt_declaration declarationLst | SB_NEWLINE* stmt_declaration;
 
-// newlineLst_0: SB_NEWLINE newlineLst_0 | ;
-// newlineLst_1: SB_NEWLINE newlineLst_1 | SB_NEWLINE;
-
 COMMENT: '##' ~('\r' | '\n')* -> skip;
 WS: [ \t\b\f]+ -> skip; // skip spaces, tabs, backspaces, form feeds
 WS2: (' ' | '\\t' | '\\b' | '\\f')+ -> skip;
@@ -95,13 +92,11 @@ fragment EscSequence:
 //=====EXPRESSIONS=====
 // ===Array===
 arrayElement: IDENTIFIER expr_element | expr_func_call expr_element;
-// arrayElement: operand expr_element;
 expr_element: SB_LEFTSQUARE op_index SB_RIGHTSQUARE;
 op_index: expr SB_COMMA op_index | expr;
 
 //Precedence: high to low
 op_unary_index: arrayElement;
-// op_unary_index: expr_element;
 op_unary_sign: OP_MINUS;
 op_unary_logical: OP_NOT;
 op_binary_multiplying: OP_MULT | OP_DIV | OP_MOD;
@@ -126,7 +121,6 @@ expr_multiplying: expr_multiplying op_binary_multiplying expr_not | expr_not;
 expr_not: op_unary_logical expr_not | expr_sign;
 expr_sign: op_unary_sign expr_sign | expr_index;
 expr_index: op_unary_index | operand;
-// expr_index: operand op_unary_index | operand;
 operand: IDENTIFIER | NUMBER | BOOL | STRING | arrayValue | expr_func_call | SB_LEFTBRACKET expr SB_RIGHTBRACKET;
 expr_func_call: IDENTIFIER SB_LEFTBRACKET argLst SB_RIGHTBRACKET;
 
@@ -146,10 +140,8 @@ stmt_var_declaration_var: KW_VAR IDENTIFIER value_init;
 value_init: OP_ASSIGN expr;
 
 stmt_array_declaration: kw_type_explicit arrayId array_init | kw_type_explicit arrayId;
-// stmt_array_declaration: kw_type_explicit IDENTIFIER SB_LEFTSQUARE arrayDim SB_RIGHTSQUARE array_init | kw_type_explicit IDENTIFIER SB_LEFTSQUARE arrayDim SB_RIGHTSQUARE;
 arrayId: IDENTIFIER SB_LEFTSQUARE arrayDim SB_RIGHTSQUARE;
 arrayDim: NUMBER SB_COMMA arrayDim | NUMBER;
-// array_init: OP_ASSIGN arrayValue;
 array_init: value_init;
 arrayValue: SB_LEFTSQUARE exprLst SB_RIGHTSQUARE;
 exprLst: expr SB_COMMA exprLst | expr;
@@ -159,7 +151,6 @@ stmt_func_declaration:
 paramLst: param paramLstTail | ;
 paramLstTail: SB_COMMA param paramLstTail | ;
 param: kw_type_explicit IDENTIFIER | kw_type_explicit arrayId;
-// param: kw_type_explicit IDENTIFIER | kw_type_explicit IDENTIFIER SB_LEFTSQUARE arrayDim SB_RIGHTSQUARE;
 func_body: stmt_return | stmt_block | ;
 
 //=====STATEMENTS=====
@@ -175,7 +166,6 @@ statement:
 	| stmt_func_call SB_NEWLINE+
 	| stmt_block SB_NEWLINE+
 	;
-// statement: statement_type;
 
 //===Assignment===
 stmt_assignment: assignment_lhs value_init;
